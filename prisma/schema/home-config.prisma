@@ -1,0 +1,15 @@
+model HomeConfig {
+  id              String   @id @default(uuid()) @db.Uuid
+  heroTitle       String   @map("hero_title") @db.VarChar(255)
+  heroSubtitle    String?  @map("hero_subtitle") @db.Text
+  heroBadge       String?  @map("hero_badge") @db.VarChar(100)
+  heroCtaText     String   @default("Tạo thiệp ngay") @map("hero_cta_text") @db.VarChar(50)
+  heroCtaLink     String   @default("/templates") @map("hero_cta_link") @db.VarChar(200)
+  featuredSlugs   String[] @default([]) @map("featured_slugs")
+  statsCount      Json     @default("{\"templates\": 120, \"couples\": 5800, \"wishes\": 45000}") @map("stats_count")
+  testimonials    Json     @default("[]")
+  faqs            Json     @default("[]")
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("home_configs")
+}

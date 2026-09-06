@@ -1,0 +1,27 @@
+enum AssetCategory {
+  STICKER
+  SHAPE
+  BACKGROUND
+  AUDIO
+  FONT
+  SAMPLE_IMG
+
+  @@map("asset_category")
+}
+
+model Asset {
+  id          String        @id @default(uuid()) @db.Uuid
+  category    AssetCategory
+  name        String        @db.VarChar(100)
+  subCategory String?       @map("sub_category") @db.VarChar(50)
+  url         String?       @db.VarChar(500)
+  content     String?       @db.Text
+  metadata    Json?
+  isPremium   Boolean       @default(false) @map("is_premium")
+  order       Int           @default(0)
+  isActive    Boolean       @default(true) @map("is_active")
+  createdAt   DateTime      @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([category, subCategory])
+  @@map("assets")
+}

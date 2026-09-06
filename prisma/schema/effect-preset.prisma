@@ -1,0 +1,21 @@
+enum EffectCategory {
+  OPENING_3D
+  PARTICLE
+  ANIMATION
+
+  @@map("effect_category")
+}
+
+model EffectPreset {
+  id          String         @id @default(uuid()) @db.Uuid
+  code        String         @unique @db.VarChar(50)
+  name        String         @db.VarChar(100)
+  description String?        @db.Text
+  category    EffectCategory
+  icon        String?        @db.VarChar(50)
+  config      Json           @default("{}")
+  isPremium   Boolean        @default(false) @map("is_premium")
+  createdAt   DateTime       @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("effect_presets")
+}

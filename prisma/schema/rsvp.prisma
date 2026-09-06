@@ -1,0 +1,16 @@
+model Rsvp {
+  id                   String       @id @default(uuid()) @db.Uuid
+  invitationId         String       @map("invitation_id") @db.Uuid
+  guestName            String       @map("guest_name") @db.VarChar(100)
+  phoneNumber          String?      @map("phone_number") @db.VarChar(20)
+  attending            Boolean      @default(true)
+  numberOfGuests       Int          @default(1) @map("number_of_guests")
+  dietaryRequirements String?      @map("dietary_requirements") @db.VarChar(255)
+  wishes               String?      @db.Text
+  createdAt            DateTime     @default(now()) @map("created_at") @db.Timestamptz
+
+  invitation           Invitation   @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+
+  @@index([invitationId])
+  @@map("rsvps")
+}
