@@ -7,6 +7,9 @@ import { UsersModule } from "./modules/users/users.module";
 import { InvitationsModule } from "./modules/invitations/invitations.module";
 import { TemplatesModule } from "./modules/templates/templates.module";
 import { RsvpModule } from "./modules/rsvp/rsvp.module";
+import { UploadsModule } from "./modules/uploads/uploads.module";
+import { CmsModule } from "./modules/cms/cms.module";
+import { AssetsModule } from "./modules/assets/assets.module";
 
 @Module({
   imports: [
@@ -20,6 +23,9 @@ import { RsvpModule } from "./modules/rsvp/rsvp.module";
     InvitationsModule,
     TemplatesModule,
     RsvpModule,
+    UploadsModule,
+    CmsModule,
+    AssetsModule,
   ],
 })
 export class AppModule {}
